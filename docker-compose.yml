@@ -1,0 +1,55 @@
+services:
+
+  postgres:
+    image: postgres
+    container_name: ms_pg_sql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=francisco
+      - POSTGRES_PASSWORD=1234567890
+      - PGDATA=/var/lib/postgresql/data
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - microservices-net
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo
+    container_name: ms_mongo_db
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=francisco
+      - MONGO_INITDB_ROOT_PASSWORD=1234567890
+
+  mongo-express:
+    image: mongo-express
+    container_name: ms_mongo_express
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=francisco
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=1234567890
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+    restart: always
+    depends_on:
+      - mongodb
+
+  mail-dev:
+    image: maildev/maildev
+    container_name: ms_mail_dev
+    ports:
+      - 1080:1080
+      - 1025:1025
+
+networks:
+  microservices-net:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  mongo:
