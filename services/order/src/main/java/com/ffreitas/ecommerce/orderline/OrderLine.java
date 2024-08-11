@@ -1,5 +1,6 @@
-package com.ffreitas.ecommerce.order;
+package com.ffreitas.ecommerce.orderline;
 
+import com.ffreitas.ecommerce.order.Order;
 import jakarta.persistence.*;
 import lombok.*;
 

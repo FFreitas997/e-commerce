@@ -1,5 +1,6 @@
 package com.ffreitas.ecommerce.order;
 
+import com.ffreitas.ecommerce.orderline.OrderLine;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
