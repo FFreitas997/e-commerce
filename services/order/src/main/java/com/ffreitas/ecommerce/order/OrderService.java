@@ -6,6 +6,8 @@ import com.ffreitas.ecommerce.kafka.NotificationService;
 import com.ffreitas.ecommerce.kafka.OrderConfirmation;
 import com.ffreitas.ecommerce.orderline.OrderLineRequest;
 import com.ffreitas.ecommerce.orderline.OrderLineService;
+import com.ffreitas.ecommerce.payment.PaymentClient;
+import com.ffreitas.ecommerce.payment.PaymentRequest;
 import com.ffreitas.ecommerce.product.ProductClient;
 import com.ffreitas.ecommerce.product.PurchaseRequest;
 import jakarta.persistence.EntityNotFoundException;
@@ -21,6 +23,7 @@ public class OrderService {
     private final OrderRepository repository;
     private final CustomerClient customerClient;
     private final ProductClient productClient;
+    private final PaymentClient paymentClient;
     private final OrderMapper mapper;
     private final OrderLineService orderLineService;
     private final NotificationService notificationService;
@@ -53,7 +56,15 @@ public class OrderService {
             var orderLineID = orderLineService.saveOrderLine(requestOrderLine);
         }
 
-        // TODO: Start Payment Process
+        var paymentRequest = PaymentRequest
+                .builder()
+                .orderReference(order.getReference())
+                .amount(request.totalAmount())
+                .orderId(order.getId())
+                .customer(customer)
+                .build();
+
+        paymentClient.requestOrderPayment(paymentRequest);
 
         var orderConfirmation = OrderConfirmation
                 .builder()

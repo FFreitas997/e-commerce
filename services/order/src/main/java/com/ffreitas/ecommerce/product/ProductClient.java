@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductClient {
 
-    @Value("${application.config.product-url}")
+    @Value("${application.config.product-baseurl}")
     private String productURL;
     private final RestTemplate restTemplate;
 
