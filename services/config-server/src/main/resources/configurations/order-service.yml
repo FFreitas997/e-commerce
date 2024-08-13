@@ -26,9 +26,9 @@ server:
 application:
 
   config:
-    customer-baseurl: http://localhost:8222/api/v1/customers
-    payment-baseurl: http://localhost:8222/api/v1/payments
-    product-baseurl: http://localhost:8222/api/v1/products
+    customer-baseurl: http://localhost:8090/api/v1/customers
+    payment-baseurl: http://localhost:8060/api/v1/payments
+    product-baseurl: http://localhost:8050/api/v1/products
 
   kafka:
     topic-name: order-topic
