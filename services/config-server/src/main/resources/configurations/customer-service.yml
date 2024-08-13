@@ -7,6 +7,7 @@ spring:
       port: 27017
       database: customerdb
       authentication-database: admin
+      uri: mongodb://francisco:1234567890@localhost/customerdb?ssl=false&authSource=admin
 
 server:
   port: 8090
