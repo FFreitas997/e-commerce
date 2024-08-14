@@ -99,7 +99,7 @@ Section 11 - API Gateway
 
 Section 12 - Exercice
 	- Establish a communication with all the microservices
-		--> should be devided and detailed
+		→ should be divided and detailed
 	- Solution
 
 Section 13 - Asynchronous communication
@@ -111,7 +111,7 @@ Section 13 - Asynchronous communication
 		--> diagram
 	- Publish message to order-queue
 	- Test the changes
-	- Exercice: Follow the previous steps and publish a message on payment-queue
+	- Exercise: Follow the previous steps and publish a message on payment-queue
 	- Solution
 
 Section 14 - Play and Observe
