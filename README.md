@@ -53,23 +53,25 @@ Benefits of microservices:
 
 ### Main Components of Microservices:
 
-1. Service: A microservice is a small, independent service that performs a specific business function.
+1. Service:
+   A microservice is a small, independent service that performs a specific business function.
+   **Domain-driven design** is an architectural approach that helps you build microservices around business domains.
+   Each microservice is focused on a specific business function and encapsulates the domain logic and data.
+   Domain-driven design helps you create a more maintainable, scalable, and flexible microservices' architecture.
 2. API Gateway:
    An API gateway is a service that acts as a single entry point for clients to access multiple microservices.
    It handles routing, authentication, load balancing, and other cross-cutting concerns.
-3. Service Discovery:
+3. Service Discovery (Registry):
    This component keeps track of the locations and network addresses of all microservices in the system.
    Service discovery ensures that services can locate and communicate with each other dynamically.
 4. Load Balancer:
    A load balancer distributes incoming network traffic across multiple instances of a service to ensure optimal
    performance and availability.
-5. Containerization:
-   Microservices are often deployed in containers, such as Docker containers, to ensure consistency and portability
-   across different environments.
-6. Message Broker:
-   A message broker is a middleware component that enables communication between microservices using asynchronous
-   messaging.
-   Message brokers help decouple services and provide reliable message delivery.
+5. Async Communication (Message Broker):
+   Microservices communicate with each other asynchronously using message brokers like Apache Kafka or RabbitMQ.
+6. Sync Communication (REST API):
+   Microservices communicate with each other synchronously using RESTful APIs over HTTP.
+   We can use openFeign, RestTemplate, WebClient, etc...
 7. Distributed Tracing System:
    A distributed tracing system allows you to monitor and trace requests as they flow through multiple microservices.
    This helps you identify performance bottlenecks and troubleshoot issues in a distributed system.
@@ -78,6 +80,48 @@ Benefits of microservices:
 9. Configuration Management:
    Configuration management tools help you manage external properties for microservices across different environments.
    This ensures that each microservice has the correct configuration settings for its environment.
+10. Centralized Logging:
+    Centralized logging tools help you collect, store, and analyze log data from multiple microservices in a single
+    location.
+    Centralized logging makes it easier to monitor and troubleshoot issues in a distributed system.
+11. Circuit Breaker:
+    A circuit breaker is a design pattern that helps you build resilient microservices by handling and recovering from
+    failures in a distributed system.
+    Circuit breakers help prevent cascading failures and improve the overall reliability of the system.
+12. Security:
+    Security is a critical aspect of microservices architecture.
+    Technologies like OAuth 2.0, JWT, and keycloak can help you secure your microservices at the API Gateway level.
+    In each microservice level, you can use Spring Security to secure your endpoints.
+    You can also use SSL/TLS to encrypt communication between microservices.
+13. Monitoring and Alerting:
+    Monitoring and alerting tools help you track the health and performance of your microservices.
+    You can set up alerts to notify you of issues and take action to resolve them.
+    Tools like Prometheus, Grafana, and ELK Stack can help you monitor and analyze your microservices.
+14. Continuous Integration and Deployment (CI/CD):
+    CI/CD pipelines help you automate the build, test, and deployment of microservices.
+    CI/CD pipelines ensure that changes are tested and deployed quickly and reliably.
+    Tools like Jenkins, GitLab CI/CD, and GitHub Actions can help you set up CI/CD pipelines for your microservices.
+15. Domain-driven Design:
+    Domain-driven design is an architectural approach that helps you build microservices around business domains.
+    Each microservice is focused on a specific business function and encapsulates the domain logic and data.
+    Domain-driven design helps you create a more maintainable, scalable, and flexible microservices' architecture.
+16. Event-driven Architecture:
+    Event-driven architecture is an architectural approach that helps you build microservices that communicate with each
+    other asynchronously using events.
+    Events are messages that represent changes in the system and are used to trigger actions in other microservices.
+    Event-driven architecture helps you build decoupled, scalable, and resilient microservices.
+17. Containerization:
+    Containerization is a technology that allows you to package applications and dependencies into containers.
+    Containers are lightweight, portable, and isolated environments that run on a host machine.
+    Technologies like Docker and Kubernetes can help you containerize and orchestrate your microservices.
+18. Orchestration:
+    Orchestration is the process of automating the deployment, scaling, and management of microservices.
+    Orchestration tools like Kubernetes help you manage and coordinate multiple microservices in a distributed system.
+19. Saga Pattern:
+    The saga pattern is a design pattern
+    that helps you manage distributed transactions in a microservices architecture.
+    Sagas are a sequence of local transactions that are coordinated to ensure data consistency across multiple services.
+    The saga pattern helps you maintain data consistency and reliability in a distributed system.
 
 ### E-Commerce Description
 
@@ -252,7 +296,7 @@ Technologies used:
 ### Notification Service
 
 The Notification Service is responsible for managing notification data and providing notification-related operations.
-This service doesn't provide an API for notification management operations. 
+This service doesn't provide an API for notification management operations.
 It communicates with the order service and payment service through a message broker.
 The service listens to messages that came from the broker and after receiving it,
 the notification service will send a message to the customer by email.
